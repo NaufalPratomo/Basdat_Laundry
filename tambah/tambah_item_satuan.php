@@ -1,5 +1,5 @@
 <?php 
-    include "../service/database.php";
+    include "../service/database.php"; 
     
     if (isset($_POST["add_item"])) {
 

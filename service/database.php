@@ -1,5 +1,5 @@
 <?php 
-    $hostname = "localhost";
+    $hostname = "localhost"; 
     $username = "root";
     $password = "";
     $database = "alesha_laundry_db";

@@ -1,5 +1,5 @@
 <?php
-// Buat koneksi ke database
+// Buat koneksi ke database 
 $mysqli = mysqli_connect("localhost", "root", "", "alesha_laundry_db");
 
 // Cek koneksi

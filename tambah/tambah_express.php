@@ -1,5 +1,5 @@
 <?php 
-    include "../service/database.php";
+    include "../service/database.php"; 
     if (isset($_POST['tambah'])) {
         $db = mysqli_connect($hostname, $username, $password, $database);
 
