@@ -1,19 +1,16 @@
 <?php 
     include "../service/database.php";
+    
     if (isset($_POST['tambah'])) {
-
         $nama_reg = $_POST['nama_reg'];
         $noTelp_reg = $_POST['noTelp_reg'];
         $berat = $_POST['berat'];
         $keterangan = $_POST['keterangan'];
         $tgl_keluar = $_POST['tgl_keluar'];
-        $garansi = new DateTime($tgl_keluar);
-        $garansi->add(new DateInterval('P3D'));
-        $garansi = $garansi->format('Y-m-d');
         $harga = $berat * 5000;
 
-        $sql = "INSERT INTO customer_reg (nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, garansi) VALUES ('$nama_reg', '$noTelp_reg', '$harga','$berat', '$keterangan', '$tgl_keluar', '$garansi')";
-        
+        $sql = "INSERT INTO customer_reg (nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, tgl_masuk) VALUES ('$nama_reg', '$noTelp_reg', '$harga','$berat', '$keterangan', '$tgl_keluar', DEFAULT)";
+
         if ($db->query($sql)) {
             echo "mantap bwang";
         } else {

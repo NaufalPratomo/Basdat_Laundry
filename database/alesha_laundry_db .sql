@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2024 at 07:09 PM
+-- Generation Time: May 07, 2024 at 09:16 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -33,18 +33,12 @@ CREATE TABLE `customer_express` (
   `noTelp_cus` varchar(15) NOT NULL,
   `tgl_masuk` date NOT NULL DEFAULT current_timestamp(),
   `tgl_keluar` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
   `harga` varchar(15) NOT NULL,
   `berat` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `garansi` date NOT NULL
+  `garansi` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customer_express`
---
-
-INSERT INTO `customer_express` (`id_cus`, `nama_cus`, `noTelp_cus`, `tgl_masuk`, `tgl_keluar`, `harga`, `berat`, `keterangan`, `garansi`) VALUES
-(1, 'Anjaiani', '1828', '2024-05-06', '2024-05-24', '31', 310000, 'adasd', '2024-05-27');
 
 -- --------------------------------------------------------
 
@@ -58,21 +52,19 @@ CREATE TABLE `customer_reg` (
   `noTelp_cus` varchar(15) NOT NULL,
   `tgl_masuk` date NOT NULL DEFAULT current_timestamp(),
   `tgl_keluar` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
   `harga` varchar(15) NOT NULL,
   `berat` int(11) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `garansi` date NOT NULL
+  `garansi` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer_reg`
 --
 
-INSERT INTO `customer_reg` (`id_cus`, `nama_cus`, `noTelp_cus`, `tgl_masuk`, `tgl_keluar`, `harga`, `berat`, `keterangan`, `garansi`) VALUES
-(11, 'bambang', '081252288955', '0000-00-00', '0000-00-00', '', 3, 'Hello bwang', '2024-05-09'),
-(12, 'yatim', '081252288955', '2024-05-08', '2024-05-20', '', 12, 'Hello bwang', '2024-05-23'),
-(16, '', '', '2024-05-06', '2024-05-23', '23', 115000, 'masuk', '2024-05-26'),
-(17, 'hasyim', '012812', '2024-05-06', '2024-05-16', '21', 105000, 'baadad', '2024-05-19');
+INSERT INTO `customer_reg` (`id_cus`, `nama_cus`, `noTelp_cus`, `tgl_masuk`, `tgl_keluar`, `tgl_selesai`, `harga`, `berat`, `keterangan`, `garansi`) VALUES
+(19, 'bambang', '2121', '2024-05-07', '2024-05-16', '0000-00-00', '12', 60000, 'asdiad', '');
 
 -- --------------------------------------------------------
 
@@ -87,10 +79,10 @@ CREATE TABLE `customer_satuan` (
   `noTelp_cus` varchar(15) NOT NULL,
   `tgl_masuk` date NOT NULL DEFAULT current_timestamp(),
   `tgl_keluar` date NOT NULL,
-  `harga` varchar(15) NOT NULL,
-  `berat` int(11) NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `harga_total` varchar(15) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `garansi` date NOT NULL
+  `garansi` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -154,7 +146,7 @@ ALTER TABLE `customer_express`
 -- AUTO_INCREMENT for table `customer_reg`
 --
 ALTER TABLE `customer_reg`
-  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `customer_satuan`

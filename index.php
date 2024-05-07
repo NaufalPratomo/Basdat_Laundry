@@ -17,6 +17,8 @@
         <a href="tambah/tambah_reguler.php">Tambah</a>
         <p>Tambah Express</p>
         <a href="tambah/tambah_express.php">Tambah</a>
+        <p>Tambah Satuan</p>
+        <a href="tambah/tambah_satuan.php">Tambah</a>
     </main>
     <?php include "layout/footer.html"; ?>
 </body>
