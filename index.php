@@ -12,8 +12,10 @@ $result = $mysqli->query("SELECT * FROM customer_reg");
 $result2 = $mysqli->query("SELECT * FROM customer_satuan");
 $result3 = $mysqli->query("SELECT * FROM customer_express");
 
+// Fungsi untuk menghapus data
+
 // Fungsi untuk menampilkan data
-function tampilkanData($result)
+function tampilkanData($result, $tipe)
 {
     echo "<table class='table'>";
     echo "<thead><tr><th>Nama</th><th>Nomor Telepon</th><th>Tanggal Masuk</th><th>Tanggal Keluar</th></tr></thead>";
@@ -24,6 +26,7 @@ function tampilkanData($result)
         echo "<td>" . htmlspecialchars($row['noTelp_cus']) . "</td>";
         echo "<td>" . htmlspecialchars($row['tgl_masuk']) . "</td>";
         echo "<td>" . htmlspecialchars($row['tgl_keluar']) . "</td>";
+        echo "<td> <a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
         echo "</tr>";
     }
     echo "</tbody>";
@@ -93,11 +96,11 @@ function tampilkanData($result)
             <br>
             <?php
             echo "<h3>Reguler</h3>";
-            tampilkanData($result);
+            tampilkanData($result, "reguler");
             echo "<h3>Express</h3>";
-            tampilkanData($result3);
+            tampilkanData($result3, "express");
             echo "<h3>Satuan</h3>";
-            tampilkanData($result2);
+            tampilkanData($result2, "satuan");
             ?>
         </div>
     </main>
