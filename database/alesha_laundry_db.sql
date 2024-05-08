@@ -1,9 +1,9 @@
--- phpMyAdmin SQL Dump 
+-- phpMyAdmin SQL Dump
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 07, 2024 at 09:16 AM
+-- Generation Time: May 08, 2024 at 08:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -59,13 +59,6 @@ CREATE TABLE `customer_reg` (
   `garansi` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `customer_reg`
---
-
-INSERT INTO `customer_reg` (`id_cus`, `nama_cus`, `noTelp_cus`, `tgl_masuk`, `tgl_keluar`, `tgl_selesai`, `harga`, `berat`, `keterangan`, `garansi`) VALUES
-(19, 'bambang', '2121', '2024-05-07', '2024-05-16', '0000-00-00', '12', 60000, 'asdiad', '');
-
 -- --------------------------------------------------------
 
 --
@@ -80,7 +73,7 @@ CREATE TABLE `customer_satuan` (
   `tgl_masuk` date NOT NULL DEFAULT current_timestamp(),
   `tgl_keluar` date NOT NULL,
   `tgl_selesai` date NOT NULL,
-  `harga_total` varchar(15) NOT NULL,
+  `harga` varchar(15) NOT NULL,
   `keterangan` varchar(255) NOT NULL,
   `garansi` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -140,25 +133,25 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT for table `customer_express`
 --
 ALTER TABLE `customer_express`
-  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `customer_reg`
 --
 ALTER TABLE `customer_reg`
-  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `customer_satuan`
 --
 ALTER TABLE `customer_satuan`
-  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_item` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables
@@ -168,7 +161,8 @@ ALTER TABLE `item`
 -- Constraints for table `customer_satuan`
 --
 ALTER TABLE `customer_satuan`
-  ADD CONSTRAINT `customer_satuan_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`);
+  ADD CONSTRAINT `customer_satuan_ibfk_1` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`),
+  ADD CONSTRAINT `customer_satuan_ibfk_2` FOREIGN KEY (`id_item`) REFERENCES `item` (`id_item`);
 
 --
 -- Constraints for table `item`

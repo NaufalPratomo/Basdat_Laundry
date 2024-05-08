@@ -1,14 +1,22 @@
 <?php 
     include "../service/database.php"; 
     
+    // Buat koneksi ke database 
+    $mysqli = mysqli_connect("localhost", "root", "", "alesha_laundry_db");
+
+    // Cek koneksi
+    if ($mysqli->connect_error) {
+        die("Connection failed: " . $mysqli->connect_error);
+    }
+
+    session_start();
+    $id_cus = $_SESSION['id_cus'];
+
     if (isset($_POST["add_item"])) {
 
         $nama_item = $_POST['nama_item'];
         $harga_satuan = $_POST['harga_satuan'];
         $jumlah_item = $_POST['jumlah_item'];
-
-        session_start();
-        $id_cus = $_SESSION['id_cus'];
 
         $sql = "INSERT INTO item(id_cus, nama_item, harga, satuan) VALUES ('$id_cus', '$nama_item', '$harga_satuan', '$jumlah_item')";
         $db->query($sql);
@@ -16,8 +24,6 @@
 
     
     if (isset($_POST["finish"])) {
-        session_start();
-        $id_cus = $_SESSION['id_cus'];
         
         // menghitung total harga
         $total_harga = 0;
@@ -30,13 +36,33 @@
             $total_harga += $row['harga'] * $row['satuan'];
         }
 
-        $sql = "UPDATE customer_satuan SET harga_total = '$total_harga' WHERE id_cus = '$id_cus'";
+        $sql = "UPDATE customer_satuan SET harga = '$total_harga' WHERE id_cus = '$id_cus'";
         if ($db->query($sql)) {
             echo "mantap";
         } else {
             echo "gagal cooy";
         }
-        header("Location: ../index.php");}
+        header("Location: ../index.php");
+    }
+
+    // Untuk menampilkan item
+    $result = $mysqli->query("SELECT * FROM item WHERE id_cus = '$id_cus'");
+    $row = $result->fetch_assoc();
+    function tampil_item($result) {
+        echo "<table class='table'>";
+        echo "<thead><tr><th>Nama Item</th><th>Harga</th><th>Jumlah</th><th>Hapus</th></tr></thead>";
+        echo "<tbody>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row['nama_item']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['satuan']) . "</td>";
+            echo "<td><a href='../hapus_item.php?id_cus=" . $row['id_item'] . "' class='delete'>Hapus</a></td>";
+            echo "</tr>";
+        }
+        echo "</tbody>";
+        echo "</table>";
+    }
 ?>
 
 <!DOCTYPE html>
@@ -91,6 +117,9 @@
             <button type="submit" class="btn btn-success" name="finish">Selesai</button>
         </form>
     </div>
+    <?php 
+    tampil_item($result);
+    ?>
     <?php include "../layout/footer.html"; ?>
     <!-- Bootstrap JS untuk konsistensi dengan main menu -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

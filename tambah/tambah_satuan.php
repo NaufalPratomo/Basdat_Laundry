@@ -1,5 +1,6 @@
 <?php 
     include "../service/database.php"; 
+
     if (isset($_POST['tambah'])) {
         $db = mysqli_connect($hostname, $username, $password, $database);
 
@@ -18,6 +19,8 @@
         header("Location: tambah_item_satuan.php");
         exit();
     }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -71,6 +74,7 @@
             <button type="submit" class="btn btn-primary" name="tambah">Input Item</button>
         </form>
     </div>
+
     <?php include "../layout/footer.html"; ?>
     <!-- Bootstrap JS untuk konsistensi dengan main menu -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

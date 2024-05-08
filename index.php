@@ -12,21 +12,53 @@ $result = $mysqli->query("SELECT * FROM customer_reg");
 $result2 = $mysqli->query("SELECT * FROM customer_satuan");
 $result3 = $mysqli->query("SELECT * FROM customer_express");
 
-// Fungsi untuk menghapus data
-
 // Fungsi untuk menampilkan data
-function tampilkanData($result, $tipe)
+function tampilkanDataReguler($result, $tipe)
 {
     echo "<table class='table'>";
-    echo "<thead><tr><th>Nama</th><th>Nomor Telepon</th><th>Tanggal Masuk</th><th>Tanggal Keluar</th></tr></thead>";
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
     echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . htmlspecialchars($row['nama_cus']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['noTelp_cus']) . "</td>";
-        echo "<td>" . htmlspecialchars($row['tgl_masuk']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
         echo "<td>" . htmlspecialchars($row['tgl_keluar']) . "</td>";
-        echo "<td> <a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
+        echo "<td><a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
+        echo "<td><a href='detail_customer/detail_reguler.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='detail'>Detail</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+function tampilkanDataExpress($result, $tipe)
+{
+    echo "<table class='table'>";
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
+    echo "<tbody>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['nama_cus']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['tgl_keluar']) . "</td>";
+        echo "<td><a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
+        echo "<td><a href='detail_customer/detail_satuan.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='detail'>Detail</a></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+}
+function tampilkanDataSatuan($result, $tipe)
+{
+    echo "<table class='table'>";
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
+    echo "<tbody>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . htmlspecialchars($row['nama_cus']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['tgl_keluar']) . "</td>";
+        echo "<td><a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
+        echo "<td><a href='detail_customer/detail_satuan.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='detail'>Detail</a></td>";
         echo "</tr>";
     }
     echo "</tbody>";
@@ -96,11 +128,11 @@ function tampilkanData($result, $tipe)
             <br>
             <?php
             echo "<h3>Reguler</h3>";
-            tampilkanData($result, "reguler");
+            tampilkanDataReguler($result, "reguler");
             echo "<h3>Express</h3>";
-            tampilkanData($result3, "express");
+            tampilkanDataExpress($result3, "express");
             echo "<h3>Satuan</h3>";
-            tampilkanData($result2, "satuan");
+            tampilkanDataSatuan($result2, "satuan");
             ?>
         </div>
     </main>

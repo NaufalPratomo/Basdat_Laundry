@@ -11,7 +11,7 @@
 
         $harga = $berat * 10000;
 
-        $sql = "INSERT INTO customer_express(nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, tgl_masuk) VALUES ('$nama_ex', '$noTelp_ex', '$harga','$berat', '$keterangan', '$tgl_keluar', DEFAULT)";
+        $sql = "INSERT INTO customer_express(nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, tgl_masuk) VALUES ('$nama_ex', '$noTelp_ex', '$berat', '$harga','$keterangan', '$tgl_keluar', DEFAULT)";
         
         if ($db->query($sql)) {
             echo "mantap bwang";

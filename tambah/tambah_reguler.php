@@ -10,7 +10,7 @@
         $tgl_keluar = $_POST['tgl_keluar'];
         $harga = $berat * 5000;
 
-        $sql = "INSERT INTO customer_reg (nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, tgl_masuk) VALUES ('$nama_reg', '$noTelp_reg', '$harga','$berat', '$keterangan', '$tgl_keluar', DEFAULT)";
+        $sql = "INSERT INTO customer_reg (nama_cus, noTelp_cus, berat, harga, keterangan, tgl_keluar, tgl_masuk) VALUES ('$nama_reg', '$noTelp_reg', '$berat', '$harga', '$keterangan', '$tgl_keluar', DEFAULT)";
 
         if ($db->query($sql)) {
             echo "mantap bwang";
