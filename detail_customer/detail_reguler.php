@@ -32,7 +32,6 @@
 <form action="detail_reguler.php" method="POST" name="detail">
     <a href="../update/update_reguler.php?id_cus=<?php echo $id_cus; ?>">Update</a>
 
-    <button type="submit" name="done">Job Done</button>
     </form>
 </body>
 </html>

@@ -32,7 +32,6 @@
 <form action="detail_satuan.php" method="POST" name="detail">
     <a href="../update/update_satuan.php?id_cus=<?php echo $id_cus; ?>">Update</a>
 
-    <button type="submit" name="done">Job Done</button>
     </form>
 </body>
 </html>

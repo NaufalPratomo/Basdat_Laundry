@@ -32,7 +32,6 @@
 <form action="detail_express.php" method="POST" name="detail">
     <a href="../update/update_express.php?id_cus=<?php echo $id_cus; ?>">Update</a>
 
-    <button type="submit" name="done">Job Done</button>
     </form>
 </body>
 </html>
