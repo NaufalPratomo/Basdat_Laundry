@@ -1,13 +1,5 @@
 <?php 
     include "../service/database.php"; 
-    
-    // Buat koneksi ke database 
-    $mysqli = mysqli_connect("localhost", "root", "", "alesha_laundry_db");
-
-    // Cek koneksi
-    if ($mysqli->connect_error) {
-        die("Connection failed: " . $mysqli->connect_error);
-    }
 
     session_start();
     $id_cus = $_SESSION['id_cus'];
@@ -45,24 +37,60 @@
         header("Location: ../index.php");
     }
 
-    // Untuk menampilkan item
-    $result = $mysqli->query("SELECT * FROM item WHERE id_cus = '$id_cus'");
-    $row = $result->fetch_assoc();
-    function tampil_item($result) {
+    function displayItemColumn() {
+        // Connect to the database
+        include "../service/database.php"; 
+    
+        $id_cus = $_SESSION['id_cus'];
+    
+        // Query to fetch and display item columns
+        $query = "SELECT * FROM item WHERE id_cus = '$id_cus'";
+        $result = $db->query($query);
+    
+        // Fetch all data first
+        $data = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = $row;
+        }
+
+        // Output the table with all the data
         echo "<table class='table'>";
-        echo "<thead><tr><th>Nama Item</th><th>Harga</th><th>Jumlah</th><th>Hapus</th></tr></thead>";
+        echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr></thead>";
         echo "<tbody>";
-        while ($row = $result->fetch_assoc()) {
+        foreach ($data as $row) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($row['nama_item']) . "</td>";
             echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
             echo "<td>" . htmlspecialchars($row['satuan']) . "</td>";
-            echo "<td><a href='../hapus_item.php?id_cus=" . $row['id_item'] . "' class='delete'>Hapus</a></td>";
+            echo "<td><form method='POST' action='tambah_item_satuan.php'>";
+            echo "<input type='hidden' name='item_id' value='" . $row['id_item'] . "'>";
+            echo "<button type='submit' name='remove_item'>Remove Item</button>";
+            echo "</form></td>";
             echo "</tr>";
         }
         echo "</tbody>";
         echo "</table>";
     }
+    
+    // Check if the form is submitted to remove an item
+    if (isset($_POST["remove_item"])) {
+        $item_id = $_POST['item_id'];
+        removeItemColumn($item_id);
+    }
+
+    function removeItemColumn($item_id) {
+        // Connect to the database
+        include "../service/database.php"; 
+    
+        // Delete the item column based on item_id
+        $sql = "DELETE FROM item WHERE id_item = '$item_id'";
+        if ($db->query($sql)) {
+            echo "Item column successfully removed.";
+        } else {
+            echo "Failed to remove item column.";
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -118,8 +146,9 @@
         </form>
     </div>
     <?php 
-    tampil_item($result);
+    displayItemColumn();
     ?>
+
     <?php include "../layout/footer.html"; ?>
     <!-- Bootstrap JS untuk konsistensi dengan main menu -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

@@ -16,25 +16,22 @@
     }
 
     if (isset($_POST['update'])) {
-        $nama_ex = $_POST['nama_ex'];
-        $noTelp_ex = $_POST['noTelp_ex'];
+        $nama_cus = $_POST['nama_cus'];
+        $noTelp_cus = $_POST['noTelp_cus'];
         $keterangan = $_POST['keterangan'];
         $tgl_keluar = $_POST['tgl_keluar'];
         $tgl_masuk = $_POST['tgl_masuk'];
 
         // Input validation
-        if (empty($nama_ex) || empty($noTelp_ex) || empty($tgl_keluar) || empty($tgl_masuk)) {
+        if (empty($nama_cus) || empty($noTelp_cus) || empty($tgl_keluar) || empty($tgl_masuk)) {
             die("All fields are required.");
         }
 
-        // Calculate harga
-        $harga = $berat * 5000;
-
         $sql = "UPDATE customer_satuan
-            SET nama_cus = ?, noTelp_cus = ?, harga = ?, keterangan = ?, tgl_keluar = ?
+            SET nama_cus = ?, noTelp_cus = ?, keterangan = ?, tgl_keluar = ?
             WHERE id_cus = ?";
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param("ssissi", $nama_ex, $noTelp_ex, $harga, $keterangan, $tgl_keluar, $id_cus);
+        $stmt->bind_param("ssssi", $nama_cus, $noTelp_cus, $keterangan, $tgl_keluar, $id_cus);
 
         if ($stmt->execute()) {
             echo "Update successful.";
@@ -43,7 +40,17 @@
         }
 
         $stmt->close();
+        header("Location: ../index.php"); // Redirect to index.php
+        exit(); // Ensure that no other content is sent
     }
+
+// Update With Item Button
+if (isset($_POST['update_item'])) {
+    session_start();
+    $id_cus = $_SESSION['id_cus']; // Transfer $id_cus using session
+    header("Location: ../tambah/tambah_item_satuan.php?id_cus=$id_cus"); // Redirect to tambah_item_satuan.php
+    exit(); // Ensure that no other content is sent
+}
 ?>
 
 <!DOCTYPE html>
@@ -56,14 +63,15 @@
 <body>
     <h1>UPDATE SATUAN</h1>
     <form action="update_satuan.php?id_cus=<?php echo $id_cus; ?>" method="POST">
-        <input type="text" class="form-control" placeholder="Nama" name="nama_ex">
-        <input type="text" class="form-control" placeholder="Nomor Telepon" name="noTelp_ex">
+        <input type="text" class="form-control" placeholder="Nama" name="nama_cus">
+        <input type="text" class="form-control" placeholder="Nomor Telepon" name="noTelp_cus">
         <input type="text" class="form-control" placeholder="Keterangan" name="keterangan">
         <label for="tgl_keluar">Tanggal Keluar:</label>
         <input type="date" class="form-control" name="tgl_keluar">
         <label for="tgl_keluar">Tanggal Masuk:</label>
         <input type="date" class="form-control" name="tgl_masuk">
-        <button type="submit" class="btn btn-primary" name="update">Update</button>
+        <button type="submit" class="btn btn-primary" name="update">Update Data Obly</button>
+        <button type="submit" class="btn btn-primary" name="update_item">Update The Item</button>
     </form>
 </body>
 </html>

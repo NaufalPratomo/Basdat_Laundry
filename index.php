@@ -41,7 +41,7 @@ function tampilkanDataExpress($result, $tipe)
         echo "<td>" . htmlspecialchars($row['harga']) . "</td>";
         echo "<td>" . htmlspecialchars($row['tgl_keluar']) . "</td>";
         echo "<td><a href='hapus_data.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='delete'>Hapus</a></td>";
-        echo "<td><a href='detail_customer/detail_satuan.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='detail'>Detail</a></td>";
+        echo "<td><a href='detail_customer/detail_express.php?id_cus=" . $row['id_cus'] . "&tipe=" . $tipe . "' class='detail'>Detail</a></td>";
         echo "</tr>";
     }
     echo "</tbody>";

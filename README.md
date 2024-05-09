@@ -1,4 +1,4 @@
-#Cara run proyek
+# Cara run proyek
 
 1. Clone directory ini ke dalam folder htdocs di folder xampp anda
 2. Buka xampp dan buat database bernama alesha_laundry_db
