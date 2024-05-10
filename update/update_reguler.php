@@ -52,20 +52,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Express</title>
+    <title>Update Reguler - Alesha Laundry</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            padding-top: 20px;
+        }
+        .form-update-reguler {
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .form-update-reguler h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-update-reguler input,
+        .form-update-reguler button {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
+        }
+        .form-update-reguler button {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>UPDATE REGULER</h1>
-    <form action="update_reguler.php?id_cus=<?php echo $id_cus; ?>" method="POST">
-        <input type="text" class="form-control" placeholder="Nama" name="nama_ex">
-        <input type="text" class="form-control" placeholder="Nomor Telepon" name="noTelp_ex">
-        <input type="number" class="form-control" placeholder="Berat (Kg)" name="berat">
-        <input type="text" class="form-control" placeholder="Keterangan" name="keterangan">
-        <label for="tgl_keluar">Tanggal Keluar:</label>
-        <input type="date" class="form-control" name="tgl_keluar">
-        <label for="tgl_keluar">Tanggal Masuk:</label>
-        <input type="date" class="form-control" name="tgl_masuk">
-        <button type="submit" class="btn btn-primary" name="update">Update</button>
-    </form>
+    <?php include "../layout/header.html"; ?>
+    <div class="container">
+        <div class="form-update-reguler">
+            <h1>Update Reguler</h1>
+            <form action="update_reguler.php?id_cus=<?php echo $id_cus; ?>" method="POST">
+                <input type="text" class="form-control" placeholder="Nama" name="nama_ex">
+                <input type="text" class="form-control" placeholder="Nomor Telepon" name="noTelp_ex">
+                <input type="number" class="form-control" placeholder="Berat (Kg)" name="berat">
+                <input type="text" class="form-control" placeholder="Keterangan" name="keterangan">
+                <label for="tgl_keluar">Tanggal Keluar:</label>
+                <input type="date" class="form-control" name="tgl_keluar">
+                <label for="tgl_masuk">Tanggal Masuk:</label>
+                <input type="date" class="form-control" name="tgl_masuk">
+                <button type="submit" class="btn btn-primary" name="update">Update</button>
+            </form>
+        </div>
+    </div>
+    <?php include "../layout/footer.html"; ?>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -16,7 +16,8 @@ $result3 = $mysqli->query("SELECT * FROM customer_express");
 function tampilkanDataReguler($result, $tipe)
 {
     echo "<table class='table'>";
-    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
+    // Memperbaiki struktur thead agar sejajar
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th><th>Detail</th></tr></thead>";
     echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -30,10 +31,12 @@ function tampilkanDataReguler($result, $tipe)
     echo "</tbody>";
     echo "</table>";
 }
+
 function tampilkanDataExpress($result, $tipe)
 {
     echo "<table class='table'>";
-    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
+    // Memperbaiki struktur thead agar sejajar
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th><th>Detail</th></tr></thead>";
     echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -50,7 +53,8 @@ function tampilkanDataExpress($result, $tipe)
 function tampilkanDataSatuan($result, $tipe)
 {
     echo "<table class='table'>";
-    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th></tr><th>Detail</th></thead>";
+    // Memperbaiki struktur thead agar sejajar
+    echo "<thead><tr><th>Nama</th><th>Harga</th><th>Tanggal Keluar</th><th>Hapus</th><th>Detail</th></tr></thead>";
     echo "<tbody>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
